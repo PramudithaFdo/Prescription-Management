@@ -21,10 +21,31 @@
 
     <!-- Styles -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <style>
+        .navbar {
+            background-color: #b0e0e6 ;
+            font-weight: bold;
+        }
+
+        .py-4 {
+            background-color: #b0e0e6 ;
+            font-weight: bold;
+        }
+
+        .card-header {
+            background-color: #778899   ;
+            font-weight: bold;
+        }
+
+        .card-body {
+            background-color: #91a3b0    ;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

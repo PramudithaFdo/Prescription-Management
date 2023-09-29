@@ -66,25 +66,66 @@
             margin-left: -15rem;
         }
         }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            color: red; 
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: red;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        #photo_gal {
+            width: 300px; /* Change the width as needed */
+            height: 300px; /* Change the height as needed */
+        }
+
+        #page-content-wrapper {
+            background-color: #b0e0e6 ;
+            font-weight: bold;
+        }
+
+        #sidebar-wrapper {
+            background-color: #ffefd5  ;
+            font-weight: bold;
+        }
+
+        .list-group-item {
+            background-color: #ffefd5  ;
+            font-weight: bold;
+        }
+
+        .dropdown-menu {
+            background-color: #f0e68c  ;
+            font-weight: bold;
+        }
         </style>    
     </head>
     <body>
         <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">PMS </div>
         <div class="list-group list-group-flush">
       
-            <a href="/" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+            <a href="/" class="list-group-item list-group-item-action">Dashboard</a>
             @if(session('user_type') === 'user')
-            <a href="/prescriptions/create" class="list-group-item list-group-item-action bg-light">Add Prescription</a>
-            <a href="/quotations" class="list-group-item list-group-item-action bg-light">Show Quotations</a>
+            <a href="/prescriptions/create" class="list-group-item list-group-item-action">Add Prescription</a>
+            <a href="/quotations" class="list-group-item list-group-item-action">Show Quotations</a>
             
             @endif
             @if(session('user_type') === 'admin')
-            <a href="/prescriptions" class="list-group-item list-group-item-action bg-light">View Prescription</a>
-            <a href="/accepted_quotations" class="list-group-item list-group-item-action bg-light">Show Accepted Quotations</a>
+            <a href="/prescriptions" class="list-group-item list-group-item-action">View Prescription</a>
+            <a href="/accepted_quotations" class="list-group-item list-group-item-action">Show Accepted Quotations</a>
             @endif
        
         </div>
@@ -94,7 +135,7 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <nav class="navbar navbar-expand-lg navbar-light border-bottom">
         
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

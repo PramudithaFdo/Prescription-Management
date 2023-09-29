@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Photo;
 use Illuminate\Http\Request;
 use App\Quotation;
 use App\Prescription;
@@ -14,7 +15,8 @@ class QuotationController extends Controller
     public function index()
     {
         // Retrieve all quotations from the database
-        $quotations = Quotation::leftJoin('prescriptions', 'prescriptions.id', '=', 'quotations.prescription_id')
+        $quotations = Quotation::select('quotations.id', 'quotations.drug_name', 'quotations.drug_quantity', 'quotations.drug_amount', 'quotations.status')
+                                 ->leftJoin('prescriptions', 'prescriptions.id', '=', 'quotations.prescription_id')
                                  ->where('prescriptions.user_id', auth()->user()->id)
                                  ->get();
 
@@ -36,8 +38,9 @@ class QuotationController extends Controller
     {
         // Retrieve the prescription by ID
         $prescription = Prescription::findOrFail($id);
+        $photos = Photo::where('prescription_Id', $id)->get();
 
-        return view('prescriptions.quotation', compact('prescription'));
+        return view('prescriptions.quotation', compact('prescription', 'photos'));
     }
 
     public function storeQuotation(Request $request, $id)
@@ -47,23 +50,26 @@ class QuotationController extends Controller
         $prescription->quoted = 1;
         $prescription->save();
 
-        $user = $prescription->user_id;
-
         // Validate the form input
         $request->validate([
-            'drug_name' => 'required|string',
-            'drug_quantity' => 'required|integer',
-            'drug_amount' => 'required|integer',
+            'drug_name' => 'required|array',
+            'drug_name.*' => 'required|string',
+            'quantity' => 'required|array',
+            'quantity.*' => 'required|integer',
+            'price' => 'required|array',
+            'price.*' => 'required|numeric',
         ]);
 
         // Create a new quotation record associated with the prescription
-        $quotation = Quotation::create([
-            'prescription_id' => $request->input('prescription_id'),
-            'drug_name' => $request->input('drug_name'),
-            'drug_quantity' => $request->input('drug_quantity'),
-            'drug_amount' => $request->input('drug_amount'),
-            'user_id' => auth()->user()->id,
-        ]);
+        foreach ($request->input('drug_name') as $key => $name) {
+            Quotation::create([
+                'prescription_id' => $id,
+                'drug_name' => $name,
+                'drug_quantity' => $request->input('quantity')[$key],
+                'drug_amount' => $request->input('price')[$key],
+                'user_id' => auth()->user()->id,
+            ]);
+        }
 
         // Need a Mail Server
         // $user = Auth::user(); 
