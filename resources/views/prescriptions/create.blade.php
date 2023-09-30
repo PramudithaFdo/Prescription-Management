@@ -12,7 +12,7 @@
         </div>
 
         <script>
-            setTimeout(function () {
+            setTimeout(function() {
                 document.getElementById('success-alert').style.display = 'none';
             }, 3000);
         </script>
@@ -53,12 +53,12 @@
 @endsection
 
 <script>
-   document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const fileInput = document.getElementById("photos");
         const selectedFilesElement = document.getElementById("selected-files");
 
         if (fileInput && selectedFilesElement) {
-            fileInput.addEventListener("change", function () {
+            fileInput.addEventListener("change", function() {
                 const selectedFiles = Array.from(fileInput.files).map(file => file.name);
                 selectedFilesElement.textContent = selectedFiles.join(', ');
             });

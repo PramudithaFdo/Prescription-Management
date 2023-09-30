@@ -49,7 +49,7 @@ class PrescriptionController extends Controller
             $prescriptionFile = $photo;
             $fileName = time() . '_' . $prescriptionFile->getClientOriginalName();
             $prescriptionFile->storeAs('prescriptions', $fileName);
-    
+
             // Save the photo information to the database
             Photo::create([
                 'prescription_Id' => $prescriptionId,
@@ -60,4 +60,3 @@ class PrescriptionController extends Controller
         return redirect('/prescriptions/create')->with('success', 'Prescription uploaded successfully.');
     }
 }
-

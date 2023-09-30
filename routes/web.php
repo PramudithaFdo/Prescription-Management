@@ -47,3 +47,5 @@ Route::post('/accept-quotation/{id}', 'QuotationController@acceptQuotation')->na
 Route::post('/reject-quotation/{id}', 'QuotationController@rejectQuotation')->name('reject.quotation');
 
 Route::get('/accepted_quotations', [QuotationController::class, 'accepted'])->name('quotations.accepted');
+
+Route::post('/mark-as-read/{notification}', 'NotificationController@markAsRead')->name('mark-as-read');

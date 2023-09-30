@@ -4,50 +4,50 @@
 <div class="container">
     <h2>Prescriptions List</h2>
     @if (count($prescriptions) > 0)
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Note</th>
-                    <th>Delivery Address</th>
-                    <th>Delivery Time</th>
-                    <th>Prescription File</th>
-                    <th>Prepare Quotation</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($prescriptions as $prescription)
-                    <tr>
-                        <td>{{ $prescription->id }}</td>
-                        <td>{{ $prescription->note }}</td>
-                        <td>{{ $prescription->delivery_address }}</td>
-                        <td>{{ $prescription->delivery_time }}</td>
-                        <td>
-                        <div class="photo-grid">
-                            @foreach ($photos as $photo)
-                                @if ($photo->prescription_Id == $prescription->id)
-                                    <button class="btn btn-primary view-photo-button" data-toggle="modal" data-target="#imageModal" data-image="{{ asset('storage/prescriptions/' . $photo->filename) }}">View Prescription</button>
-                                @endif
-                            @endforeach
-                        </div>
-                        </td>
-                        <td>
-                            @if($prescription->quoted === 1)
-                            <a>
-                                Quotation Prepared
-                            </a>
-                            @else
-                            <a href="/prescriptions/{{ $prescription->id }}/quotation">
-                                Prepare Quotation
-                            </a>
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Note</th>
+                <th>Delivery Address</th>
+                <th>Delivery Time</th>
+                <th>Prescription File</th>
+                <th>Prepare Quotation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($prescriptions as $prescription)
+            <tr>
+                <td>{{ $prescription->id }}</td>
+                <td>{{ $prescription->note }}</td>
+                <td>{{ $prescription->delivery_address }}</td>
+                <td>{{ $prescription->delivery_time }}</td>
+                <td>
+                    <div class="photo-grid">
+                        @foreach ($photos as $photo)
+                        @if ($photo->prescription_Id == $prescription->id)
+                        <button class="btn btn-primary view-photo-button" data-toggle="modal" data-target="#imageModal" data-image="{{ asset('storage/prescriptions/' . $photo->filename) }}">View Prescription</button>
+                        @endif
+                        @endforeach
+                    </div>
+                </td>
+                <td>
+                    @if($prescription->quoted === 1)
+                    <a>
+                        Quotation Prepared
+                    </a>
+                    @else
+                    <a href="/prescriptions/{{ $prescription->id }}/quotation">
+                        Prepare Quotation
+                    </a>
+                    @endif
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
     @else
-        <p>No prescriptions uploaded yet.</p>
+    <p>No prescriptions uploaded yet.</p>
     @endif
 </div>
 
@@ -72,10 +72,10 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-    $('.view-photo-button').on('click', function () {
-        var imageUrl = $(this).data('image');
-        $('#modalImage').attr('src', imageUrl);
+    $(document).ready(function() {
+        $('.view-photo-button').on('click', function() {
+            var imageUrl = $(this).data('image');
+            $('#modalImage').attr('src', imageUrl);
+        });
     });
-});
 </script>
