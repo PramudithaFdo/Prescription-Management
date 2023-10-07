@@ -154,7 +154,9 @@
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
                             <a id="navbarNotification" class="nav-link" href="#" onclick="toggleNotificationDropdown();" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="bi bi-bell"></i>
+                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                <lord-icon src="https://cdn.lordicon.com/msetysan.json" trigger="hover" colors="primary:#121331" style="width:25px;height:25px">
+                                </lord-icon>
                                 @if(auth()->user()->unreadNotifications->count() > 0)
                                 <span class="badge badge-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
                                 @endif
